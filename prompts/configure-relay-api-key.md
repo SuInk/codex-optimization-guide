@@ -1,19 +1,19 @@
-# 配置 Codex 中转站 API Key
+# Configure Codex Relay API Key
 
-你是一个本地配置助手。请帮我把 Codex 配置为使用中转站 API Key。
+You are a local configuration assistant. Configure Codex to use a relay API key.
 
-## 目标
+## Goal
 
-- 中转站 API Key 是 `sk-...` 格式
-- 请求走 OpenAI Responses API
-- 使用自定义中转站 `base_url`
-- 不再把 API Key 放在 `auth.json` 的 `OPENAI_API_KEY` 中
+- The relay API key uses the `sk-...` format.
+- Requests should use the OpenAI Responses API.
+- Requests should use a custom relay `base_url`.
+- Do not store the API key in `auth.json` as `OPENAI_API_KEY`.
 
-## 需要处理的文件
+## Files
 
-### 1. 处理 `~/.codex/auth.json`
+### 1. Handle `~/.codex/auth.json`
 
-不要重写整个文件。只确认或修改以下两个字段：
+Do not rewrite the whole file. Only ensure these two fields are set:
 
 ```json
 {
@@ -22,42 +22,42 @@
 }
 ```
 
-如果文件里还有 `tokens`、`last_refresh` 或其它字段，全部保留，不要删除。
+If the file already contains `tokens`, `last_refresh`, or other fields, keep them.
 
-### 2. 在 `~/.codex/config.toml` 增加中转配置
+### 2. Add relay config in `~/.codex/config.toml`
 
-在文件顶层配置区域增加或确认：
+Add or confirm this top-level field:
 
 ```toml
 model_provider = "OpenAI"
 ```
 
-然后新增或更新 provider section：
+Then add or update this provider section:
 
 ```toml
 [model_providers.OpenAI]
 name = "OpenAI"
-base_url = "https://替换为中转站地址"
+base_url = "https://replace-with-relay-base-url"
 wire_api = "responses"
-experimental_bearer_token = "sk-替换为中转站apikey"
+experimental_bearer_token = "sk-replace-with-relay-api-key"
 requires_openai_auth = true
 ```
 
-## 处理要求
+## Requirements
 
-- 如果 `config.toml` 已经有 `[model_providers.OpenAI]`，就在原 section 内补齐或更新这些字段，不要重复创建 section
-- 不要把整个 `[model_providers.OpenAI]` table 直接粘到已有 TOML 文件第一行；TOML 中 table header 后面的字段会归属到该 table，可能破坏原有顶层配置
-- `model_provider = "OpenAI"` 应位于顶层配置区域
-- `[model_providers.OpenAI]` 应作为独立 section 存在
-- 保留 `config.toml` 中其它无关配置
-- 不要把 API Key 写回 `auth.json`
-- 不要删除 `auth.json` 中已有的登录 token 或其它字段
-- 处理完成后读取文件确认关键字段已经生效
-- 最后提醒我重启 Codex 或新开会话，让配置重新加载
+- If `[model_providers.OpenAI]` already exists, update that section instead of creating a duplicate.
+- Do not paste the whole `[model_providers.OpenAI]` table at the first line of an existing TOML file. TOML keys after a table header belong to that table until the next table header.
+- Keep `model_provider = "OpenAI"` in the top-level config area.
+- Keep `[model_providers.OpenAI]` as its own section.
+- Preserve unrelated `config.toml` settings.
+- Do not write the API key back to `auth.json`.
+- Do not delete existing login tokens or other fields from `auth.json`.
+- After editing, read the files back and confirm the key fields.
+- Finally, remind me to restart Codex or open a new session so the config reloads.
 
-## 验收标准
+## Acceptance
 
-修改后 `~/.codex/auth.json` 至少应满足：
+`~/.codex/auth.json` should at least contain:
 
 ```json
 {
@@ -66,17 +66,17 @@ requires_openai_auth = true
 }
 ```
 
-文件中原本存在的其它字段可以继续保留。
+Other existing fields may remain.
 
-并且 `~/.codex/config.toml` 中应包含：
+`~/.codex/config.toml` should contain:
 
 ```toml
 model_provider = "OpenAI"
 
 [model_providers.OpenAI]
 name = "OpenAI"
-base_url = "https://你的中转站地址"
+base_url = "https://your-relay-base-url"
 wire_api = "responses"
-experimental_bearer_token = "sk-你的中转站apikey"
+experimental_bearer_token = "sk-your-relay-api-key"
 requires_openai_auth = true
 ```

@@ -1,17 +1,24 @@
-# Codex 优化使用 Prompt
+# Codex Optimization Prompts
 
-收集一些可以直接复制给 Codex 使用的本地配置 prompt。
+[中文](README.zh-CN.md)
 
-## Prompt 列表
+Reusable prompts and short guides for local Codex configuration.
 
-- [配置中转站 API Key](prompts/configure-relay-api-key.md)
-- [新增 DeepSeek 本地模型](prompts/add-deepseek-models.md)
+## Prompts
 
-## 使用方式
+- [Configure a relay API key](prompts/configure-relay-api-key.md)
+- [Add DeepSeek local models](prompts/add-deepseek-models.md)
 
-打开对应 Markdown 文件，复制里面的 prompt，按需替换占位符后直接发给 Codex。
+## Guides
 
-## 隐私约定
+- [Configure a relay API key](docs/configure-relay-api-key.md)
+- [Add DeepSeek local models](docs/add-deepseek-models.md)
 
-- 示例只使用占位符。
-- 不提交真实 API Key、token、私有域名或本机绝对路径。
+## Usage
+
+Open a prompt file, replace placeholders, then send the full prompt to Codex.
+
+## Privacy Rule
+
+- Use placeholders in examples.
+- Do not commit real API keys, tokens, private domains, or local absolute paths.
