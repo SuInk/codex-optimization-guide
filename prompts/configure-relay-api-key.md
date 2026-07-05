@@ -1,4 +1,4 @@
-# Prompt: Configure Codex Relay API Key
+# 配置 Codex 中转站 API Key
 
 你是一个本地配置助手。请帮我把 Codex 配置为使用中转站 API Key。
 

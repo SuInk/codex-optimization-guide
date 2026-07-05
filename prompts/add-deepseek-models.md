@@ -1,104 +1,48 @@
-# Prompt: Add DeepSeek Models to Codex Local Catalog
+# 新增 DeepSeek 本地模型
 
 请在本地 Codex 配置里新增两个 DeepSeek 模型：
 
 - `deepseek-v4-flash`
 - `deepseek-v4-pro`
 
-## 目标
+要求：
 
-- 两个模型都继续使用当前 `~/.codex/config.toml` 里的现有 provider。
-- 不修改现有 provider 配置。
-- 不修改 `base_url`。
-- 不修改 token 或 API Key。
-- 同步修改已有的 `~/.codex/models_cache.json`。
-- 修改后验证 Codex 实际读取到了新增模型。
-
-## 修改前要求
-
-1. 先检查 `~/.codex/config.toml` 和 `~/.codex/models_cache.json` 是否存在。
-2. 修改前先备份所有会改到的文件，备份文件名带时间戳。
-3. 读取现有 `models_cache.json`，先理解它的 schema，不要凭空发明字段结构。
-
-## 禁止修改
-
-不要修改以下内容：
-
-- 现有 provider
-- `model_provider`
-- 任何 `[model_providers.*]`
-- `base_url`
-- token 或 API Key
-
-唯一允许的 `config.toml` 变更：
-
-- 如果只修改 `models_cache.json` 后 Codex 实际菜单没有读取新增模型，可以在 `config.toml` 顶层增加：
+1. 修改前先备份所有会改到的文件，备份文件名带时间戳。
+2. 检查 `~/.codex/config.toml` 和 `~/.codex/models_cache.json`。
+3. 不要修改现有 provider。
+4. 不要修改 `model_provider`。
+5. 不要修改任何 `[model_providers.*]`。
+6. 不要修改 `base_url`。
+7. 不要修改 token 或 API Key。
+8. 两个模型都继续使用当前 `config.toml` 里的现有 provider。
+9. 同步修改已有的 `~/.codex/models_cache.json`。
+10. 保持 `models_cache.json` 现有 schema，不要凭空发明新字段结构。
+11. 在模型菜单或 catalog 中，把两个模型放在现有 GPT 模型后面、`codex-auto-review` 前面。
+12. `display_name` 和 `slug` 都使用实际模型名：
+    - `deepseek-v4-flash`
+    - `deepseek-v4-pro`
+13. reasoning 不要使用 `none`，也不要使用 `max`。
+14. reasoning 只允许使用：
+    - `low`
+    - `medium`
+    - `high`
+    - `xhigh`
+15. 默认 `reasoning_effort` 或 `default_reasoning_level` 设置为 `medium`。
+16. 修改后用 `codex debug models` 或等效方式验证 Codex 实际读取到：
+    - `deepseek-v4-flash`
+    - `deepseek-v4-pro`
+17. 验证并说明顺序、`display_name`、`slug`、reasoning 档位是否正确。
+18. 如果只修改 `models_cache.json` 后 Codex 实际菜单没有读取新增模型，可以在 `config.toml` 顶层添加：
 
 ```toml
 model_catalog_json = "~/.codex/models_cache.json"
 ```
 
-即使使用这个兜底项，也仍然不要修改 provider、`base_url` 或 token。
+但仍然不要修改 provider、`base_url` 或 token。
 
-## 模型插入要求
+完成后请输出：
 
-在模型菜单/catalog 中新增：
-
-- `deepseek-v4-flash`
-- `deepseek-v4-pro`
-
-插入位置：
-
-- 放在现有 GPT 模型后面
-- 放在 `codex-auto-review` 前面
-
-字段要求：
-
-- `display_name = deepseek-v4-flash`
-- `slug = deepseek-v4-flash`
-- `display_name = deepseek-v4-pro`
-- `slug = deepseek-v4-pro`
-- provider 字段或 provider 引用复用现有 catalog 条目的写法
-- 默认 reasoning 设置为 `medium`
-
-reasoning 限制：
-
-- 不要使用 `none`
-- 不要使用 `max`
-- 只允许：
-  - `low`
-  - `medium`
-  - `high`
-  - `xhigh`
-
-如果 schema 里有 `reasoning_effort`、`default_reasoning_level` 或类似字段，默认值设为 `medium`。
-
-## 验证要求
-
-修改后运行：
-
-```bash
-codex debug models
-```
-
-如果该命令不可用，使用当前 Codex 安装支持的等效方式验证实际读取到的模型 catalog。
-
-必须确认：
-
-- 能看到 `deepseek-v4-flash`
-- 能看到 `deepseek-v4-pro`
-- 两个模型位于现有 GPT 模型后面
-- 两个模型位于 `codex-auto-review` 前面
-- 两个模型的 `display_name` 正确
-- 两个模型的 `slug` 正确
-- reasoning 档位只包含 `low`、`medium`、`high`、`xhigh`
-- 默认 reasoning 是 `medium`
-
-## 输出要求
-
-最后请说明：
-
-- 实际修改了哪些文件
+- 修改了哪些文件
 - 备份文件路径
-- Codex 实际读取到的验证结果
-- 是否使用了 `model_catalog_json` 兜底项
+- 是否使用了 `model_catalog_json`
+- 验证结果
