@@ -27,7 +27,7 @@ Set Codex auth mode to ChatGPT mode and clear the local OpenAI API key field:
 
 ## `config.toml`
 
-Ensure `model_provider` points to `OpenAI`, then configure the OpenAI provider:
+Add or update `model_provider` in the top-level config area, then add or update the OpenAI provider section:
 
 ```toml
 model_provider = "OpenAI"
@@ -43,5 +43,7 @@ requires_openai_auth = true
 ## Notes
 
 - If `[model_providers.OpenAI]` already exists, update the existing section instead of adding a duplicate.
+- Do not blindly paste the whole provider table as the first lines of an existing TOML file. In TOML, keys after a table header belong to that table until the next table header.
+- For an existing config, keep top-level keys in the top-level area and place `[model_providers.OpenAI]` as its own section.
 - Preserve unrelated settings in `config.toml`.
 - Restart Codex or open a new session after changing these files so the configuration is reloaded.

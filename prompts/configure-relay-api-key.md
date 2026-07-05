@@ -9,9 +9,9 @@
 - 使用自定义中转站 `base_url`
 - 不再把 API Key 放在 `auth.json` 的 `OPENAI_API_KEY` 中
 
-## 需要修改的文件
+## 需要处理的文件
 
-### 1. 修改 `~/.codex/auth.json`
+### 1. 处理 `~/.codex/auth.json`
 
 将内容调整为：
 
@@ -22,13 +22,17 @@
 }
 ```
 
-### 2. 修改 `~/.codex/config.toml`
+### 2. 在 `~/.codex/config.toml` 增加中转配置
 
-确保存在以下配置：
+在文件顶层配置区域增加或确认：
 
 ```toml
 model_provider = "OpenAI"
+```
 
+然后新增或更新 provider section：
+
+```toml
 [model_providers.OpenAI]
 name = "OpenAI"
 base_url = "https://替换为中转站地址"
@@ -37,12 +41,15 @@ experimental_bearer_token = "sk-替换为中转站apikey"
 requires_openai_auth = true
 ```
 
-## 修改要求
+## 处理要求
 
 - 如果 `config.toml` 已经有 `[model_providers.OpenAI]`，就在原 section 内补齐或更新这些字段，不要重复创建 section
+- 不要把整个 `[model_providers.OpenAI]` table 直接粘到已有 TOML 文件第一行；TOML 中 table header 后面的字段会归属到该 table，可能破坏原有顶层配置
+- `model_provider = "OpenAI"` 应位于顶层配置区域
+- `[model_providers.OpenAI]` 应作为独立 section 存在
 - 保留 `config.toml` 中其它无关配置
 - 不要把 API Key 写回 `auth.json`
-- 修改完成后读取文件确认关键字段已经生效
+- 处理完成后读取文件确认关键字段已经生效
 - 最后提醒我重启 Codex 或新开会话，让配置重新加载
 
 ## 验收标准
