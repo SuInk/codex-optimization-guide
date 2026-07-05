@@ -4,6 +4,21 @@ English | [中文](#中文)
 
 Reusable prompts, configuration templates, and workflow notes for improving local Codex usage.
 
+## Table of Contents
+
+- [Contents](#contents)
+- [Current Guides](#current-guides)
+- [Principles](#principles)
+- [Quick Start](#quick-start)
+- [Privacy Check](#privacy-check)
+- [中文](#中文)
+- [目录](#目录)
+- [内容](#内容)
+- [当前教程](#当前教程)
+- [原则](#原则)
+- [快速开始](#快速开始)
+- [隐私检查](#隐私检查)
+
 ## Contents
 
 - `docs/` - task-specific guides and operational notes
@@ -48,13 +63,28 @@ Common sensitive values to avoid:
 
 Codex 本地使用优化指南，收集可复用的 prompt、配置模板和工作流说明。
 
+## 目录
+
+- [内容](#内容)
+- [当前教程](#当前教程)
+- [原则](#原则)
+- [快速开始](#快速开始)
+- [隐私检查](#隐私检查)
+- [English](#codex-optimization-guide)
+- [Table of Contents](#table-of-contents)
+- [Contents](#contents)
+- [Current Guides](#current-guides)
+- [Principles](#principles)
+- [Quick Start](#quick-start)
+- [Privacy Check](#privacy-check)
+
 ## 内容
 
 - `docs/` - 具体任务的说明文档和操作记录
 - `prompts/` - 可以直接复制到 Codex 使用的完整 prompt
 - `templates/` - 可复用配置片段
 
-## 当前指南
+## 当前教程
 
 - [使用中转站 API Key 配置 Codex](docs/codex-relay-api-key.md)
 
