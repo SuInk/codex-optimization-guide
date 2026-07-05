@@ -6,12 +6,12 @@
 
 ## Prompt
 
-- [配置中转站 API Key](prompts/configure-relay-api-key.zh-CN.md)
+- [使用 API Key 同时保留登录态](prompts/use-api-key-preserve-login.zh-CN.md)
 - [新增 DeepSeek 本地模型](prompts/add-deepseek-models.zh-CN.md)
 
 ## 教程
 
-- [配置中转站 API Key](docs/configure-relay-api-key.zh-CN.md)
+- [使用 API Key 同时保留登录态](docs/use-api-key-preserve-login.zh-CN.md)
 - [新增 DeepSeek 本地模型](docs/add-deepseek-models.zh-CN.md)
 
 ## 使用方式

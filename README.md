@@ -6,12 +6,12 @@ Reusable prompts and short guides for local Codex configuration.
 
 ## Prompts
 
-- [Configure a relay API key](prompts/configure-relay-api-key.md)
+- [Use an API key while preserving login state](prompts/use-api-key-preserve-login.md)
 - [Add DeepSeek local models](prompts/add-deepseek-models.md)
 
 ## Guides
 
-- [Configure a relay API key](docs/configure-relay-api-key.md)
+- [Use an API key while preserving login state](docs/use-api-key-preserve-login.md)
 - [Add DeepSeek local models](docs/add-deepseek-models.md)
 
 ## Usage

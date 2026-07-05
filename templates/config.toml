@@ -2,7 +2,7 @@ model_provider = "OpenAI"
 
 [model_providers.OpenAI]
 name = "OpenAI"
-base_url = "https://替换为中转站地址"
+base_url = "https://替换为服务商地址"
 wire_api = "responses"
-experimental_bearer_token = "sk-替换为中转站apikey"
+experimental_bearer_token = "sk-替换为apikey"
 requires_openai_auth = true
