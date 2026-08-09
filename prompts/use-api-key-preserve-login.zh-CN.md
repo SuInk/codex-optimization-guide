@@ -16,7 +16,7 @@
 ```json
 {
   "auth_mode": "chatgpt",
-  "OPENAI_API_KEY": null,
+  "OPENAI_API_KEY": null
 }
 ```
 

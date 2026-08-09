@@ -6,15 +6,12 @@ Configure local Codex so model requests use an API key, while the existing ChatG
 
 - Use an API key for model requests.
 - Keep Codex logged in.
-- Preserve `auth.json` login fields such as `tokens` and `last_refresh`.
-- Do not store the API key in `auth.json` as `OPENAI_API_KEY`.
-- Store the API key in the active model provider config.
 
-## Files
+## Files to Handle
 
 ### 1. Handle `~/.codex/auth.json`
 
-Do not rewrite the whole file. Only ensure these two fields are set:
+Do not rewrite the whole file. Only modify it to ensure it contains these two fields:
 
 ```json
 {
@@ -23,13 +20,11 @@ Do not rewrite the whole file. Only ensure these two fields are set:
 }
 ```
 
-If the file already contains `tokens`, `last_refresh`, or other login-related fields, keep them. These fields are required for login-dependent Codex features.
+If the file already contains `tokens`, `last_refresh`, or other login-related fields, preserve all of them. Do not delete them. These fields are used by Codex features that depend on login state.
 
 ### 2. Handle `~/.codex/config.toml`
 
-Keep the existing active provider unless I explicitly ask to change it.
-
-If the active provider is `OpenAI`, the relevant section should contain an API key like this:
+Add the following content. If these fields already exist, update their formatting and values to match the example below. If I have not provided the model `base_url` or API key, ask me before making changes.
 
 ```toml
 model_provider = "OpenAI"
@@ -55,7 +50,7 @@ requires_openai_auth = true
 - After editing, read the files back and confirm the effective fields.
 - Finally, remind me to restart Codex or open a new session so the config reloads.
 
-## Acceptance
+## Acceptance Criteria
 
 `~/.codex/auth.json` should at least contain:
 
@@ -68,10 +63,17 @@ requires_openai_auth = true
 
 Other existing login fields may remain.
 
-The active provider in `~/.codex/config.toml` should contain:
+The currently active provider in `~/.codex/config.toml` should contain:
 
 ```toml
-experimental_bearer_token = "sk-your-api-key"
+model_provider = "OpenAI"
+
+[model_providers.OpenAI]
+name = "OpenAI"
+base_url = "https://replace-with-provider-base-url"
+wire_api = "responses"
+experimental_bearer_token = "sk-replace-with-api-key"
+requires_openai_auth = true
 ```
 
-The final result should allow Codex to use the API key for model requests while keeping login-dependent features available.
+The final result should allow Codex model requests to use the API key while plugins, connectors, mobile control, and other features that depend on login state remain available.
